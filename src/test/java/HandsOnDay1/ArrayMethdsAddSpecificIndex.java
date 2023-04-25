@@ -34,6 +34,8 @@ public class ArrayMethdsAddSpecificIndex {
 
     }
 
+
+
     public static void addtoIndex(int[] arr,int value,int index){
 
         int[] newArr = new int[arr.length +1];
@@ -55,8 +57,5 @@ public class ArrayMethdsAddSpecificIndex {
         }
         System.out.println(Arrays.toString(newArr));
 }
-
-
-
 
 }

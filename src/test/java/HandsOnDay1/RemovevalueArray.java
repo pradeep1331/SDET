@@ -20,7 +20,6 @@ public class RemovevalueArray {
             if(a == value) count++;
         }
 
-
         int[] newArr = new int[arr.length-count];
         int newArrCount = 0;
         for (int j=0;j<arr.length;j++ ) {
