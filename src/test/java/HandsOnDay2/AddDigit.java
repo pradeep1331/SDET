@@ -6,14 +6,15 @@ public class AddDigit {
         lstDgt(38);
         lstDgt(0);
         lstDgt(2);
+        lstDgt(10);
         lstDgt(Integer.MAX_VALUE);
-        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(Integer.MAX_VALUE);
 
     }
 
     public static void lstDgt(int num) {
 
-        if (num > 10) {
+        if (num >= 10) {
 
             while (num >= 10) {
                 int ans = 0;
