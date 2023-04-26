@@ -1,7 +1,4 @@
-package Day1;
-
-import javafx.fxml.Initializable;
-import org.omg.CORBA.INITIALIZE;
+package ClassFiles.Day1;
 
 import java.util.ArrayList;
 

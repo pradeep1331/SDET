@@ -1,4 +1,4 @@
-package Day1;
+package ClassFiles.Day1;
 
 public class sqrRt {
 
