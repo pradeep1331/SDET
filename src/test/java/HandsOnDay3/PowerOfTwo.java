@@ -5,11 +5,12 @@ public class PowerOfTwo {
     public static void main(String[] args) {
         System.out.println(ispower(1));
         System.out.println(ispower(16));
+        System.out.println(ispower(-16));
 
     }
 
     public static boolean ispower(int gvn) {
-        if(gvn== 0){
+        if(gvn < 0){
             return false;
             }else if(gvn == 1){
             return true;
