@@ -9,9 +9,6 @@ public class SandglassStarPattern {
     }
 
     public static void printPattern(int gvn){
-
-
-
             //Upper triangle
               for (int i=gvn;i>0;i--){
                   //spaces
