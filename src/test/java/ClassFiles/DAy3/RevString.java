@@ -8,7 +8,6 @@ public class RevString {
         revStr(gvn);
     }
     public static void revStr(String gvn){
-
         String[] arr = gvn.split(" ");
         String output = "";
         for (String s : arr) {
@@ -18,7 +17,6 @@ public class RevString {
     }
 
     public static String revgvnStr1(String gvnString){
-
         StringBuilder sb = new StringBuilder(gvnString);
         int left = 0 ,right = gvnString.length()-1;
         while(left<right){
