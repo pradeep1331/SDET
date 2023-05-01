@@ -12,9 +12,7 @@ public class removeDuplicates {
         System.out.println(removeduplicates(gvn));
         System.out.println(removeduplicates(gvn1));
     }
-
     public static int removeduplicates(int[] arr){
-
          int left = 0 , right = 1;
          if(arr.length == 0 || arr == null){
              return 1;
@@ -29,6 +27,5 @@ public class removeDuplicates {
           }
         System.out.println(Arrays.toString(arr));
             return left+1;
-
     }
 }
