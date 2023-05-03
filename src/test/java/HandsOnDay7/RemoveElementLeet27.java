@@ -36,6 +36,7 @@ public class RemoveElementLeet27 {
                     }
                 }
             }
+            System.out.println(Arrays.toString(nums));
             return left+1;
         }
     }
