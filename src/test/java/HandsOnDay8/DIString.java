@@ -8,7 +8,7 @@ public class DIString {
 
         String str = "IDID";
         String str1 = "III";
-        String str2 = "DDI";
+        String str2 = "DIID";
 
 
 
@@ -30,7 +30,6 @@ public class DIString {
             for(int i=0;i<size;i++){
 
                 if(s.charAt(i)=='I'){
-
                     newArr[i] = iCounter++;
                 }else{
                     newArr[i] = DCounter--;
