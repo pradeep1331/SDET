@@ -23,7 +23,6 @@ public class SortArrayByParity {
              if(arr.length==0){
                  return arr;
              }
-
              while(right<arr.length){
                  if(arr[right] %2==0){
                      int temp = arr[left];
@@ -33,12 +32,8 @@ public class SortArrayByParity {
                      right++;
                  }else {
                      right++;
-
                  }
-
              }
-
-
         return arr;
 
     }
