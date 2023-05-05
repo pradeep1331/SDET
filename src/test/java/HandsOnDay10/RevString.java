@@ -7,11 +7,11 @@ public class RevString {
     }
     public static void revStr(String gvn){
         String[] arr = gvn.split(" ");
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (String s : arr) {
-            output = output + revgvnStr1(s) + " ";
+            output.append(revgvnStr1(s)).append(" ");
         }
-        System.out.println(output.trim());
+        System.out.println(output.toString().trim());
     }
 
     public static String revgvnStr1(String gvnString){
@@ -26,7 +26,4 @@ public class RevString {
         }
         return sb.toString();
     }
-
-
-
 }
