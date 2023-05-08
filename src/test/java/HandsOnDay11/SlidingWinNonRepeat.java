@@ -12,8 +12,6 @@ public class SlidingWinNonRepeat {
         nrpt(gvn,3);
         nrpt(gvn1,3);
 
-
-
     }
 
     public static void nrpt(String gvn, int k) {
@@ -44,6 +42,8 @@ public class SlidingWinNonRepeat {
         for (int i = 0; i < gvnstring.length(); i++) {
             cmap.put(gvnstring.charAt(i),cmap.getOrDefault(gvnstring.charAt(i),0)+1);
         }
+
+
         boolean flag = true;
         for ( char c  : cmap.keySet()  ) {
             if(cmap.get(c)>1){
