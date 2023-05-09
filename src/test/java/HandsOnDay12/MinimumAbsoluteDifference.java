@@ -21,9 +21,7 @@ public class MinimumAbsoluteDifference {
 
         sort(arr);
 
-
         int minDiff = Integer.MAX_VALUE;
-
         for (int i = 1; i < arr.length; i++) {
             int diff = Math.abs(arr[i] - arr[i-1]);
             if (diff < minDiff) {
