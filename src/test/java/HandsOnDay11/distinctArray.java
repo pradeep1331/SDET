@@ -28,9 +28,9 @@ public class distinctArray {
     }
 
     public static boolean fndDistinct(int[] arr , int[] arr1) {
-        if (arr == null || arr1==null || arr ==null || arr1 == null) {
-            return false;
-        }
+       if (arr.length != arr1.length || arr !=null || arr1 != null) {
+           return false;
+       }
         boolean flag = false;
         // Create hash maps for the arrays
         HashMap<Integer, Integer> map1 = new HashMap<>();
