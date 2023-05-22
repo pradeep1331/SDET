@@ -1,6 +1,6 @@
 package HandsOnDay15;
 
-import javax.xml.bind.annotation.XmlAnyAttribute;
+
 
 public interface SmallestLetterGreater {
 

@@ -81,30 +81,30 @@ class LinkedLst{
         return position;
     }
 
-    void addAll(LinkedList list, int index) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Invalid index");
-        }
-
-        Node newNode = list.start;
-
-
-
-        Node current = start;
-        for (int i = 0; i < index - 1; i++) {
-            current = current.next;
-        }
-
-        // Connect the new node
-        Node nextNode = current.next;
-        current.next = newNode;
-        while (newNode.next != null) {
-            newNode = newNode.next;
-        }
-        newNode.next = nextNode;
-
-        size += list.size;
-    }
+//    void addAll(LinkedList list, int index) {
+//        if (index < 0 || index > size) {
+//            throw new IndexOutOfBoundsException("Invalid index");
+//        }
+//
+//        Node newNode = list.start;
+//
+//
+//
+//        Node current = start;
+//        for (int i = 0; i < index - 1; i++) {
+//            current = current.next;
+//        }
+//
+//        // Connect the new node
+//        Node nextNode = current.next;
+//        current.next = newNode;
+//        while (newNode.next != null) {
+//            newNode = newNode.next;
+//        }
+//        newNode.next = nextNode;
+//
+//        size += list.size;
+//    }
 
       @Override
     public String toString(){

@@ -1,6 +1,6 @@
 package ClassFiles.Day6;
 
-public class DoublyLInked {
+public class    DoublyLInked {
 
     public static void main(String[] args) {
 
