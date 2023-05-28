@@ -6,11 +6,8 @@ import java.util.Stack;
 public class LongPressedName {
 
     public static void main(String[] args) {
-
-        String name = "alex", typed = "aaleex";
-
+        String name = "alex", typed = "aaaleex";
         System.out.println(LongPressedName(name,typed));
-
     }
 
     public static boolean LongPressedName(String name, String typed ){
@@ -35,10 +32,6 @@ public class LongPressedName {
                 return false;
             }
         }
-
-
-
-
         return i== name.length() ;
     }
 
