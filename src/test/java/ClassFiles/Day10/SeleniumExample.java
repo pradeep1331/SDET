@@ -78,6 +78,7 @@ public class SeleniumExample {
         //
         driver.navigate().to("https://pradeep1331.atlassian.net/jira/software/projects/PT/boards/1");
         Thread.sleep(2000);
+
           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // Wait until a specific element is visible
           wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("createGlobalItem")));
