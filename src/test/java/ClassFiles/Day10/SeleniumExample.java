@@ -8,6 +8,7 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.sql.Driver;
@@ -71,7 +72,7 @@ public class SeleniumExample {
         ((JavascriptExecutor) driver).executeScript("window.open()");
 
         Thread.sleep(2000);
-// Switch to the new tab
+        // Switch to the new tab
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         //
@@ -100,6 +101,8 @@ public class SeleniumExample {
         String numIssues2 = driver.findElement(By.xpath("(//h2[@data-test-id='platform-board-kit.common.ui.column-header.editable-title.column-title.column-title'])/div[2]/div/span/span")).getText();
 
         System.out.println(numIssues2);
+
+        Assert.assertNotEquals(numIssues,numIssues2);
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
         // Wait until a specific element is visible
         wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("createGlobalItem")));
