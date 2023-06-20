@@ -1,4 +1,4 @@
-package Selenium;
+package mandatoryHomeWork.selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
