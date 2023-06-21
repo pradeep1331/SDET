@@ -1,4 +1,4 @@
-package mandatoryHomeWork.week9.day1;
+package mandatoryHomeWork.week8.day2;
 
 import java.util.Arrays;
 import java.util.HashMap;

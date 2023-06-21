@@ -21,12 +21,9 @@ public class createNewIssue {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("https://id.atlassian.com/login");
-
         Thread.sleep(2000);
-
         driver.findElement(By.id("username")).sendKeys("spradeep1331@gmail.com");
         driver.findElement(By.id("login-submit")).click();
-
         driver.findElement(By.id("password")).sendKeys("Scsp1111");
         driver.findElement(By.id("login-submit")).click();
         WebElement projectBacklogLink = driver.findElement(By.id("project-backlog-link"));
