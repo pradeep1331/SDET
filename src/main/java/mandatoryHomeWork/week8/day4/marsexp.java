@@ -1,4 +1,4 @@
-package mandatoryHomeWork.week8.day1;
+package mandatoryHomeWork.week8.day4;
 
 public class marsexp {
 

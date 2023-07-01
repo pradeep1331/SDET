@@ -7,31 +7,30 @@ public class MoveZeroes {
 
     public static void main(String[] args) {
 
-        int[] nums = {0,1,0,3,12};
+        int[] nums = {1,1,2};
 
         System.out.println(Arrays.toString(moveZeroes(nums)) );
 
     }
 
-    private static int[] moveZeroes(int[] gvnArr){
+    private static int[] moveZeroes(int[] nums) {
 
-        if(gvnArr.length==1) return gvnArr;
+        int left = 0 , right = 1 ;
 
-        int left =0 , right =1;
+        while (right<nums.length){
+                if(nums[left]==0 && nums[right] != 0){
 
-        while(right<gvnArr.length){
-
-            if(gvnArr[left]==0 && gvnArr[right]>0){
-                int temp = gvnArr[left];
-                gvnArr[left] = gvnArr[right];
-                gvnArr[right] = temp;
-                left++;
-                right++;
-            } else if ((gvnArr[right] ==0)) {
-                right++;
+                    int temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right] = temp;
+                    left++;
+                    right++;
+            }else{
+               right++;
             }
         }
-        return  gvnArr;
-        }
+        System.out.println(left);
+        return nums;
+    }
 
 }
