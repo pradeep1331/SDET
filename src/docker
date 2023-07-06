@@ -18,3 +18,39 @@ install Java (optional)
 10. to see whats happening(public ip of ec2)
 		 http://localhost:4444 /ui
 		 http://localhost:7900/?autoconnect=1&resize=scale&password=secret.
+
+
+package Docker;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
+public class dockerSample {
+
+    public static void main(String[] args) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+        // Set the URL of the Selenium Grid Hub
+        String seleniumGridUrl = "http://3.91.247.202:4444/wd/hub";
+        // Create a new instance of the Chrome driver
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(seleniumGridUrl),
+                capabilities);
+
+        // Open the website
+        driver.get("https://www.google.com");
+
+        // Print the title of the website
+        System.out.println("Page title is: " + driver.getTitle());
+
+        String browserVersion = driver.getCapabilities().getBrowserVersion();
+        System.out.println(browserVersion);
+
+        // Close the browser
+           driver.quit();
+    }
+}
+
