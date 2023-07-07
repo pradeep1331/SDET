@@ -13,7 +13,7 @@ public class dockerSample {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName("chrome");
         // Set the URL of the Selenium Grid Hub
-        String seleniumGridUrl = "http://54.174.154.99:4444/wd/hub";
+        String seleniumGridUrl = "http://3.91.247.202:4444/wd/hub";
         // Create a new instance of the Chrome driver
         RemoteWebDriver driver = new RemoteWebDriver(new URL(seleniumGridUrl),
                 capabilities);
