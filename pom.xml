@@ -18,15 +18,11 @@
       <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
-          <version>4.0.0</version>
+          <version>4.11.0</version>
       </dependency>
 
       <!-- WebDriverManager -->
-      <dependency>
-          <groupId>io.github.bonigarcia</groupId>
-          <artifactId>webdrivermanager</artifactId>
-          <version>5.0.3</version>
-      </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.testng/testng -->
       <dependency>
           <groupId>org.testng</groupId>
@@ -34,25 +30,70 @@
           <version>7.8.0</version>
       </dependency>
 
-      <dependency>
-          <groupId>io.github.bonigarcia</groupId>
-          <artifactId>webdrivermanager</artifactId>
-          <version>5.3.3</version>
-      </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-      <dependency>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-          <version>4.9.1</version>
-      </dependency>
+
       <dependency>
           <groupId>org.apache.directory.studio</groupId>
           <artifactId>org.apache.commons.io</artifactId>
           <version>2.4</version>
       </dependency>
+      <!-- RestAssured -->
+      <dependency>
+          <groupId>io.rest-assured</groupId>
+          <artifactId>rest-assured</artifactId>
+          <version>4.4.0</version>
+      </dependency>
 
+      <!-- JsonPath (Optional, but useful for extracting values from JSON responses) -->
+      <dependency>
+          <groupId>io.rest-assured</groupId>
+          <artifactId>json-path</artifactId>
+          <version>4.4.0</version>
+      </dependency>
 
-
+      <!-- XmlPath (Optional, but useful for extracting values from XML responses) -->
+      <dependency>
+          <groupId>io.rest-assured</groupId>
+          <artifactId>xml-path</artifactId>
+          <version>4.4.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.12.5</version> <!-- Replace with the latest version available -->
+      </dependency>
+      <dependency>
+          <groupId>io.rest-assured</groupId>
+          <artifactId>json-schema-validator</artifactId>
+          <version>4.4.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.22</version> <!-- Use the latest version -->
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.13.0</version> <!-- Use the latest version -->
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.13.0</version> <!-- Use the latest version -->
+      </dependency>
+      <dependency>
+          <groupId>com.jayway.jsonpath</groupId>
+          <artifactId>json-path-assert</artifactId>
+          <version>2.5.0</version> <!-- Replace with the latest version -->
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.15.2</version>
+      </dependency>
   </dependencies>
     <build>
         <plugins>

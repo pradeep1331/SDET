@@ -1,6 +1,6 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,7 @@ public class CreateLead {
 
     public static void main(String[] args) throws InterruptedException {
         String url = "http://leaftaps.com/opentaps/control/login";
-        WebDriverManager.chromedriver().setup();
+
         ChromeOptions chrOpt = new ChromeOptions();
         chrOpt.addArguments("--remote-allow-origins=*");
         chrOpt.addArguments("--start-maximized");

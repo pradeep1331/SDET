@@ -1,6 +1,6 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -33,7 +33,6 @@ public class SeleniumExample {
 
 
         // Setup ChromeDriver using WebDriverManager
-        WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");

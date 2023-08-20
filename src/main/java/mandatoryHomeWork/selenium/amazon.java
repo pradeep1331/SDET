@@ -1,6 +1,5 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +15,6 @@ import java.util.Set;
 public class amazon {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chrOpt = new ChromeOptions();
         chrOpt.addArguments("--remote-allow-origins=*");
         chrOpt.addArguments("--start-maximized");

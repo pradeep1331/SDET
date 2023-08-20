@@ -1,6 +1,6 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -23,7 +23,7 @@ public class jira {
         int ranInd = random.nextInt(names.length);
 
         String name = names[ranInd];
-        WebDriverManager.chromedriver().setup();
+
         ChromeOptions opt = new ChromeOptions();
         opt.addArguments("--remote-allow-origins=*");
         ChromeDriver driver = new ChromeDriver(opt);

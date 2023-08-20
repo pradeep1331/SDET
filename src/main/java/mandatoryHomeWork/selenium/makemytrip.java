@@ -1,6 +1,6 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,6 @@ public class makemytrip {
     public static void main(String[] args) throws InterruptedException {
 
         String url = "https://www.makemytrip.com/";
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chrOpt = new ChromeOptions();
         chrOpt.addArguments("--remote-allow-origins=*");
         chrOpt.addArguments("--start-maximized");

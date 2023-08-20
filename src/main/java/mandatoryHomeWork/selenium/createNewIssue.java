@@ -1,6 +1,6 @@
 package mandatoryHomeWork.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +14,7 @@ public class createNewIssue {
 
     public static void main(String[] args) throws InterruptedException {
 
-        WebDriverManager.chromedriver().setup();
+
         ChromeOptions opt = new ChromeOptions();
         opt.addArguments("--remote-allow-origins=*");
         ChromeDriver driver = new ChromeDriver(opt);
