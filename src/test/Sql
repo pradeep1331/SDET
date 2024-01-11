@@ -1,0 +1,17 @@
+
+SELECT 
+    RPAD.create_tstamp,
+    RPAD.WHSE_ID,
+    RPAD.company_no,
+    RPAD.supplier_id,
+    RPAD.shipment_ref_no,
+    RPAD.po_no,
+    RPAD.pallet_id,
+    RH.trailer_container_id,
+    RH.hold_flag,
+    RD.sku  -- Assuming you want to retrieve the 'sku' from rcv_dtl
+FROM RCV_PO_ASN_DTL AS RPAD
+JOIN RCV_header AS RH
+    ON RPAD.shipment_ref_no = RH.shipment_ref_no
+JOIN rcv_dtl AS RD
+    ON RPAD.pallet_id = RD.pallet_id;
