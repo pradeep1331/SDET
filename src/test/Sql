@@ -1,17 +1,37 @@
 
 SELECT 
-    RPAD.create_tstamp,
+    RPAD.create_tstamp AS arrival_Date,
     RPAD.WHSE_ID,
     RPAD.company_no,
+    RPAD.bldg_id,
     RPAD.supplier_id,
     RPAD.shipment_ref_no,
     RPAD.po_no,
-    RPAD.pallet_id,
     RH.trailer_container_id,
+    RPAD.ASN_LINE_NO,
     RH.hold_flag,
-    RD.sku  -- Assuming you want to retrieve the 'sku' from rcv_dtl
-FROM RCV_PO_ASN_DTL AS RPAD
-JOIN RCV_header AS RH
-    ON RPAD.shipment_ref_no = RH.shipment_ref_no
-JOIN rcv_dtl AS RD
-    ON RPAD.pallet_id = RD.pallet_id;
+    RH.shipment_ref_type,
+    RH.carr_cd,
+    RD.sku,
+    SP.STORAGE_TYPE,
+    SP.UNITS_PER_CASE,
+    SP.CASES_PER_PALLET,
+    SP.COMMENTS,
+    SP.HAZMAT_CLASS_TRUCK,
+    RH.LOT_NUM,
+    RH.RCVD_PALLETS,
+    RH.RCVD_UNITS,
+    PXL.TO_LOC_ID,
+    COUNT(CASE WHEN PXL.TO_LOC_ID <> 'RCV' THEN PXL.pallet_id END) AS Number_of_putaways
+FROM RCV_PO_ASN_DTL RPAD
+JOIN RCV_HDR RH ON RPAD.shipment_ref_no = RH.shipment_ref_no
+JOIN RCV_DTL RD ON RPAD.pallet_id = RD.pallet_id
+JOIN SKU_PROFILE SP ON RD.sku = SP.sku
+LEFT JOIN PALLET_XFER_LOG PXL ON RPAD.pallet_id = PXL.pallet_id
+GROUP BY RPAD.create_tstamp, RPAD.WHSE_ID,
+         RPAD.company_no, RPAD.bldg_id, RPAD.supplier_id, 
+         RPAD.shipment_ref_no, RPAD.po_no, RH.trailer_container_id, 
+         RPAD.ASN_LINE_NO, RH.hold_flag, RH.shipment_ref_type, RH.carr_cd, 
+         RD.sku, SP.STORAGE_TYPE, SP.UNITS_PER_CASE, SP.CASES_PER_PALLET, 
+         SP.COMMENTS, SP.HAZMAT_CLASS_TRUCK, RH.LOT_NUM, RH.RCVD_PALLETS, 
+         RH.RCVD_UNITS, PXL.TO_LOC_ID;
