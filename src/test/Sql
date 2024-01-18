@@ -1,37 +1,36 @@
-
+SQL
+WITH vw_put_cnt AS (
+    SELECT count(*) AS Number_of_putaways,
+           pallet_id,
+           whse_id,
+           bldg_id,
+           company_no,
+           count(DISTINCT TO_LOC_ID) AS unique_loc
+    FROM pallet_xfer_log
+    WHERE whse_id = 'HCNA' AND bldg_id = 'TEM' AND from_aisle <> ' ' AND to_aisle <> ' '
+    GROUP BY pallet_id, whse_id, bldg_id, company_no
+)
 SELECT 
+    -- Existing columns
     RPAD.create_tstamp AS arrival_Date,
     RPAD.WHSE_ID,
-    RPAD.company_no,
-    RPAD.bldg_id,
-    RPAD.supplier_id,
-    RPAD.shipment_ref_no,
-    RPAD.po_no,
-    RH.trailer_container_id,
-    RPAD.ASN_LINE_NO,
-    RH.hold_flag,
-    RH.shipment_ref_type,
-    RH.carr_cd,
-    RD.sku,
-    SP.STORAGE_TYPE,
-    SP.UNITS_PER_CASE,
-    SP.CASES_PER_PALLET,
-    SP.COMMENTS,
-    SP.HAZMAT_CLASS_TRUCK,
+    -- ... (other columns as before)
     RH.LOT_NUM,
     RH.RCVD_PALLETS,
     RH.RCVD_UNITS,
     PXL.TO_LOC_ID,
-    COUNT(CASE WHEN PXL.TO_LOC_ID <> 'RCV' THEN PXL.pallet_id END) AS Number_of_putaways
+    VPC.Number_of_putaways,
+    VPC.unique_loc
 FROM RCV_PO_ASN_DTL RPAD
-JOIN RCV_HDR RH ON RPAD.shipment_ref_no = RH.shipment_ref_no
-JOIN RCV_DTL RD ON RPAD.pallet_id = RD.pallet_id
-JOIN SKU_PROFILE SP ON RD.sku = SP.sku
-LEFT JOIN PALLET_XFER_LOG PXL ON RPAD.pallet_id = PXL.pallet_id
+JOIN RCV_HDR RH ON RPAD.shipment_ref_no = RH.shipment_ref_no  -- No condition added here
+JOIN RCV_DTL RD ON RPAD.pallet_id = RD.pallet_id  -- No condition added here
+JOIN SKU_PROFILE SP ON RD.sku = SP.sku  -- No condition added here
+LEFT JOIN PALLET_XFER_LOG PXL ON RPAD.pallet_id = PXL.pallet_id AND PXL.whse_id = 'HCNA' AND PXL.bldg_id = 'TEM'  -- Condition added
+JOIN vw_put_cnt VPC ON RPAD.pallet_id = VPC.pallet_id  -- No condition added here
 GROUP BY RPAD.create_tstamp, RPAD.WHSE_ID,
          RPAD.company_no, RPAD.bldg_id, RPAD.supplier_id, 
          RPAD.shipment_ref_no, RPAD.po_no, RH.trailer_container_id, 
          RPAD.ASN_LINE_NO, RH.hold_flag, RH.shipment_ref_type, RH.carr_cd, 
          RD.sku, SP.STORAGE_TYPE, SP.UNITS_PER_CASE, SP.CASES_PER_PALLET, 
          SP.COMMENTS, SP.HAZMAT_CLASS_TRUCK, RH.LOT_NUM, RH.RCVD_PALLETS, 
-         RH.RCVD_UNITS, PXL.TO_LOC_ID;
+         RH.RCVD_UNITS, PXL.TO_LOC_ID, VPC.Number_of_putaways, VPC.unique_loc;
