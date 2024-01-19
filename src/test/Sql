@@ -1,49 +1,16 @@
-WITH vw_put_cnt AS (
-    SELECT count(*) AS Number_of_putaways,
-           pallet_id,
-           whse_id,
-           bldg_id,
-           company_no,
-           count(DISTINCT TO_LOC_ID) AS unique_loc
-    FROM pallet_xfer_log
-    WHERE whse_id = 'HCNA' AND bldg_id = 'TEM' AND from_aisle <> ' ' AND to_aisle <> ' '
-    GROUP BY pallet_id, whse_id, bldg_id, company_no
-)
-SELECT 
-    RPAD.create_tstamp AS arrival_Date,
-    RPAD.WHSE_ID,
-    RPAD.company_no,
-    RPAD.bldg_id,
-    RPAD.supplier_id,
-    RPAD.shipment_ref_no,
-    RPAD.po_no,
-    RH.trailer_container_id,
-    RPAD.ASN_LINE_NO,
-    RH.hold_flag,
-    RH.shipment_ref_type,
-    RH.carr_cd,
-    RD.sku,
-    SP.STORAGE_TYPE,
-    SP.UNITS_PER_CASE,
-    SP.CASES_PER_PALLET,
-    SP.COMMENTS,
-    SP.HAZMAT_CLASS_TRUCK,
-    RH.LOT_NUM,
-    RH.RCVD_PALLETS,
-    RH.RCVD_UNITS,
-    PXL.TO_LOC_ID,
-    VPC.Number_of_putaways,
-    VPC.unique_loc
-FROM RCV_PO_ASN_DTL RPAD
-JOIN RCV_HDR RH ON RPAD.shipment_ref_no = RH.shipment_ref_no
-JOIN RCV_DTL RD ON RPAD.pallet_id = RD.pallet_id
-JOIN SKU_PROFILE SP ON RD.sku = SP.sku
-LEFT JOIN PALLET_XFER_LOG PXL ON RPAD.pallet_id = PXL.pallet_id AND PXL.whse_id = 'HCNA' AND PXL.bldg_id = 'TEM'
-JOIN vw_put_cnt VPC ON RPAD.pallet_id = VPC.pallet_id
-GROUP BY RPAD.create_tstamp, RPAD.WHSE_ID,
-         RPAD.company_no, RPAD.bldg_id, RPAD.supplier_id, 
-         RPAD.shipment_ref_no, RPAD.po_no, RH.trailer_container_id, 
-         RPAD.ASN_LINE_NO, RH.hold_flag, RH.shipment_ref_type, RH.carr_cd, 
-         RD.sku, SP.STORAGE_TYPE, SP.UNITS_PER_CASE, SP.CASES_PER_PALLET, 
-         SP.COMMENTS, SP.HAZMAT_CLASS_TRUCK, RH.LOT_NUM, RH.RCVD_PALLETS, 
-         RH.RCVD_UNITS, PXL.TO_LOC_ID, VPC.Number_of_putaways, VPC.unique_loc;
+SELECT
+    LOC_PAL.WHSE_ID,
+    LOC_PAL.BLDG_ID,
+    LOC_PAL.LOC_ID,
+    PALLET_DTL.SKU,
+    PALLET_DTL.LOT_NO1,
+    PALLET_DTL.EXPIRY_DATE,
+    PALLET_HOLD_DTL.HOLD_CD1,
+    PALLET_DTL.ONHAND_QTY
+FROM LOC_PAL
+JOIN PALLET_HDR ON LOC_PAL.WHSE_ID = PALLET_HDR.WHSE_ID AND LOC_PAL.BLDG_ID = PALLET_HDR.BLDG_ID AND LOC_PAL.PALLET_ID = PALLET_HDR.PALLET_ID
+JOIN PALLET_DTL ON LOC_PAL.WHSE_ID = PALLET_DTL.WHSE_ID AND LOC_PAL.BLDG_ID = PALLET_DTL.BLDG_ID AND LOC_PAL.PALLET_ID = PALLET_DTL.PALLET_ID
+LEFT JOIN PALLET_HOLD_DTL ON LOC_PAL.WHSE_ID = PALLET_HOLD_DTL.WHSE_ID AND LOC_PAL.BLDG_ID = PALLET_HOLD_DTL.BLDG_ID AND LOC_PAL.PALLET_ID = PALLET_HOLD_DTL.PALLET_ID
+WHERE 
+    LOC_PAL.WHSE_ID = 'your_desired_whse_id'  -- Replace with the actual WHSE_ID you want to filter by
+    AND LOC_PAL.BLDG_ID = 'your_desired_bldg_id'  -- Replace with the actual BLDG_ID you want to filter by
