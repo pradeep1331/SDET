@@ -6,7 +6,7 @@ WITH grouped_data AS (
         PALLET_DTL.SKU,
         PALLET_DTL.LOT_NO1,
         PALLET_DTL.EXPIRY_DATE,
-        listadd(hold_reason_cd, ',') within group (order by hold_reason_cd) as lock_codes,
+        LISTAGG(hold_reason_cd, ',') WITHIN GROUP (ORDER BY hold_reason_cd) AS lock_codes,
         SUM(PALLET_DTL.ONHAND_QTY) AS TOTAL_ONHAND_QTY,
         COUNT(DISTINCT PALLET_DTL.SKU) OVER (PARTITION BY LOC_PAL.WHSE_ID, LOC_PAL.BLDG_ID, LOC_PAL.LOC_ID) AS SKU_COUNT
     FROM LOC_PAL
@@ -29,8 +29,7 @@ WITH grouped_data AS (
         LOC_PAL.LOC_ID,
         PALLET_DTL.SKU,
         PALLET_DTL.LOT_NO1,
-        PALLET_DTL.EXPIRY_DATE,
-        lock_codes
+        PALLET_DTL.EXPIRY_DATE
 )
 SELECT * FROM grouped_data
 WHERE SKU_COUNT > 1
