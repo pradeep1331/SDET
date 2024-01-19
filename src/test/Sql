@@ -1,5 +1,3 @@
-
-
 SELECT DISTINCT  -- Remove duplicate records
     LOC_PAL.WHSE_ID,
     LOC_PAL.BLDG_ID,
@@ -17,12 +15,5 @@ WHERE
     LOC_PAL.WHSE_ID = 'your_desired_whse_id'
     AND LOC_PAL.BLDG_ID = 'your_desired_bldg_id'
     AND PALLET_DTL.ONHAND_QTY > 0
-    -- Only include locations with multiple distinct SKUs, based on PALLET_ID
-    AND EXISTS (
-        SELECT 1
-        FROM PALLET_DTL
-        WHERE WHSE_ID = LOC_PAL.WHSE_ID
-            AND BLDG_ID = LOC_PAL.BLDG_ID
-            AND PALLET_ID = LOC_PAL.PALLET_ID  -- Use PALLET_ID for comparison
-            AND SKU <> PALLET_DTL.SKU
-    )
+    -- Filter locations with multiple distinct SKUs using window functions
+    AND COUNT(DISTINCT PALLET_DTL.SKU) OVER (PARTITION BY LOC_PAL.WHSE_ID, LOC_PAL.BLDG_ID, LOC_PAL.LOC_ID) > 1
