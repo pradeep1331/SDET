@@ -6,7 +6,7 @@ WITH grouped_data AS (
         PALLET_DTL.SKU,
         PALLET_DTL.LOT_NO1,
         PALLET_DTL.EXPIRY_DATE,
-        LISTAGG(hold_reason_cd, ',') WITHIN GROUP (ORDER BY hold_reason_cd) AS lock_codes,
+        LISTAGG(PHD.hold_reason_cd, ',') WITHIN GROUP (ORDER BY PHD.hold_reason_cd) AS lock_codes,  -- Assuming PHD alias
         SUM(PALLET_DTL.ONHAND_QTY) AS TOTAL_ONHAND_QTY,
         COUNT(DISTINCT PALLET_DTL.SKU) OVER (PARTITION BY LOC_PAL.WHSE_ID, LOC_PAL.BLDG_ID, LOC_PAL.LOC_ID) AS SKU_COUNT
     FROM LOC_PAL
