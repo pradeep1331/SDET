@@ -37,17 +37,17 @@ WHERE SKU_COUNT > 1
 
 
 SELECT
-  inv_transaction.*,
-  sku_profile.SKU_DESC,
-  CASE WHEN inv_transactions.REF_TYPE3 = 'ORD_GRP_NO' THEN inv_transactions.REF_NO3 ELSE '' END AS ORDER_NBR,
-  CASE WHEN inv_transactions.REF_TYPE2 = 'PO_NO' THEN inv_transactions.REF_NO2 ELSE '' END AS Inbound_reference,
-  COALESCE(order_header.EXT_ORD_NO, '') AS EXT_ORD_NO
-FROM inv_transaction
-INNER JOIN sku_profile
-  ON inv_transaction.WHSE_ID = sku_profile.WHSE_ID
-  AND inv_transaction.BLDG_ID = sku_profile.BLDG_ID
-  AND inv_transaction.SKU = sku_profile.SKU
-LEFT JOIN order_header
-  ON inv_transaction.WHSE_ID = order_header.WHSE_ID
-  AND inv_transaction.BLDG_ID = order_header.BLDG_ID
-  AND inv_transaction.REF_NO3 = order_header.ORD_NO;
+  it.*,
+  sp.SKU_DESC,
+  CASE WHEN it.REF_TYPE3 = 'ORD_GRP_NO' THEN it.REF_NO3 ELSE '' END AS order_nbr,
+  CASE WHEN it.REF_TYPE2 = 'PO_NO' THEN it.REF_NO2 ELSE '' END AS inbound_reference,
+  COALESCE(oh.EXT_ORD_NO, '') AS ext_ord_no
+FROM inv_transaction AS it
+INNER JOIN sku_profile AS sp
+  ON it.WHSE_ID = sp.WHSE_ID
+  AND it.BLDG_ID = sp.BLDG_ID
+  AND it.SKU = sp.SKU
+LEFT JOIN order_header AS oh
+  ON it.WHSE_ID = oh.WHSE_ID
+  AND it.BLDG_ID = oh.BLDG_ID
+  AND it.REF_NO3 = oh.ORD_NO;
