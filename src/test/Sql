@@ -55,7 +55,8 @@ SELECT
   sp.SKU_DESC,
   CASE WHEN it.REF_TYPE3 = 'ORD_GRP_NO' THEN it.REF_NO3 ELSE '' END AS order_nbr,
   CASE WHEN it.REF_TYPE2 = 'PO_NO' THEN it.REF_NO2 ELSE '' END AS inbound_reference,
-  COALESCE(oh.EXT_ORD_NO, '') AS ext_ord_no
+  COALESCE(oh.EXT_ORD_NO, '') AS ext_ord_no,
+  oh.ord_sub_type
 FROM inv_transaction AS it
 INNER JOIN sku_profile AS sp
   ON it.WHSE_ID = sp.WHSE_ID
@@ -64,3 +65,4 @@ INNER JOIN sku_profile AS sp
 LEFT JOIN order_header AS oh
   ON it.WHSE_ID = oh.WHSE_ID
   AND it.BLDG_ID = oh.BLDG_ID
+  AND it.REF_NO3 = oh.ORD_NO;
