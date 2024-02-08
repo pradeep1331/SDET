@@ -36,6 +36,8 @@ WHERE SKU_COUNT > 1
 
 
 
+
+
 SELECT
   it.WHSE_ID,
   it.BLDG_ID,
@@ -46,7 +48,7 @@ SELECT
   it.LOT_NO1,
   it.REF_TYPE3,
   it.REF_NO3,
-  it.TRANS_TYPE,
+  it.TRANS_TYPE, -- Added trans_type column
   it.REF_TYPE2,
   it.REF_NO2,
   it.TRANS_CD,
@@ -56,7 +58,7 @@ SELECT
   CASE WHEN it.REF_TYPE3 = 'ORD_GRP_NO' THEN it.REF_NO3 ELSE '' END AS order_nbr,
   CASE WHEN it.REF_TYPE2 = 'PO_NO' THEN it.REF_NO2 ELSE '' END AS inbound_reference,
   COALESCE(oh.EXT_ORD_NO, '') AS ext_ord_no,
-  oh.ord_sub_type
+  COALESCE(oh.ord_sub_type, '') AS ord_sub_type
 FROM inv_transaction AS it
 INNER JOIN sku_profile AS sp
   ON it.WHSE_ID = sp.WHSE_ID
