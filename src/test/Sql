@@ -37,7 +37,21 @@ WHERE SKU_COUNT > 1
 
 
 SELECT
-  it.*,
+  it.WHSE_ID,
+  it.BLDG_ID,
+  it.COMPANY_NO,
+  it.TRANS_DATE,
+  it.SKU,
+  it.PALLET_ID,
+  it.LOT_NO1,
+  it.REF_TYPE3,
+  it.REF_NO3,
+  it.TRANS_TYPE,
+  it.REF_TYPE2,
+  it.REF_NO2,
+  it.TRANS_CD,
+  it.HOLD_CD,
+  it.ONHAND_QTY,
   sp.SKU_DESC,
   CASE WHEN it.REF_TYPE3 = 'ORD_GRP_NO' THEN it.REF_NO3 ELSE '' END AS order_nbr,
   CASE WHEN it.REF_TYPE2 = 'PO_NO' THEN it.REF_NO2 ELSE '' END AS inbound_reference,
@@ -50,4 +64,3 @@ INNER JOIN sku_profile AS sp
 LEFT JOIN order_header AS oh
   ON it.WHSE_ID = oh.WHSE_ID
   AND it.BLDG_ID = oh.BLDG_ID
-  AND it.REF_NO3 = oh.ORD_NO;
