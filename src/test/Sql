@@ -33,3 +33,21 @@ WITH grouped_data AS (
 )
 SELECT * FROM grouped_data
 WHERE SKU_COUNT > 1
+
+
+
+SELECT
+  inv_transaction.*,
+  sku_profile.SKU_DESC,
+  CASE WHEN inv_transactions.REF_TYPE3 = 'ORD_GRP_NO' THEN inv_transactions.REF_NO3 ELSE '' END AS ORDER_NBR,
+  CASE WHEN inv_transactions.REF_TYPE2 = 'PO_NO' THEN inv_transactions.REF_NO2 ELSE '' END AS Inbound_reference,
+  COALESCE(order_header.EXT_ORD_NO, '') AS EXT_ORD_NO
+FROM inv_transaction
+INNER JOIN sku_profile
+  ON inv_transaction.WHSE_ID = sku_profile.WHSE_ID
+  AND inv_transaction.BLDG_ID = sku_profile.BLDG_ID
+  AND inv_transaction.SKU = sku_profile.SKU
+LEFT JOIN order_header
+  ON inv_transaction.WHSE_ID = order_header.WHSE_ID
+  AND inv_transaction.BLDG_ID = order_header.BLDG_ID
+  AND inv_transaction.REF_NO3 = order_header.ORD_NO;
