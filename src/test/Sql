@@ -48,7 +48,7 @@ SELECT
   it.LOT_NO1,
   it.REF_TYPE3,
   it.REF_NO3,
-  it.TRANS_TYPE, -- Added trans_type column
+  it.TRANS_TYPE,
   it.REF_TYPE2,
   it.REF_NO2,
   it.TRANS_CD,
